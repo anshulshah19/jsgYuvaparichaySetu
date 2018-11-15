@@ -1,0 +1,40 @@
+.error{
+  color:red
+}
+.form-control{
+  padding: .375rem .75rem !important;
+  height: 34px !important;
+}
+h4{
+  font-weight: 600;
+  color: #333;
+  padding: 0 !important;
+}
+.border-content{
+  border: 1px solid #c4c4c4;
+}
+.btn-preview, .btn-submit{
+  padding: 5px 25px;
+  margin: 10px;
+}
+.btn-preview:hover, .btn-preview:focus{
+  color: #fff;
+}
+.modal-body{
+ padding-top: 0px;
+}
+.modal-header h5{
+  color: #333;
+}
+.modal-body table tr td{
+  width: 25%;
+}
+.modal-body .profile{
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+.modal-body .profile img{
+  width: 250px;
+  height: 150px;
+}

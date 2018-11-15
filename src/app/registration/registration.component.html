@@ -1,0 +1,647 @@
+<div class="container reg-container" style="position: absolute;  top: 0; right: 0; bottom: 0; left: 0;">
+	<section class="testimonial py-5" id="testimonial">
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-12 py-5  text-white text-center" style="height: 280px;margin-top: 15px;padding: 0 !important; background-color: #00196c">
+					<div class=" ">
+						<div class="card-body">
+							<img src="assets/jsg-fed.jpg" style="width:30%; margin-top:50px">
+							<h2 class="py-3"> Yuva Parichay Setu Registration</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 py-5 border-content">
+					<h4 class="pb-4">Please fill with your details</h4>
+					<form #regForm='ngForm' (ngSubmit)="Register(regForm)" autocomplete="false" novalidate>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Surname</label>
+								<input id="Mobile No" name="surname" #surnameref="ngModel" placeholder="Surname (અટક)" class="form-control" required="required"
+								 type="text" [(ngModel)]="surname" required ngModel [ngClass]="{'red-border-class': surnameref.errors && surnameref.dirty}">
+								<label [hidden] *ngIf="surnameref.errors && (surnameref.touched || surnameref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!surnameref.errors.required" class="error">
+										Surname required (અટક આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Name</label>
+								<input id="Mobile No" name="name" #nameref="ngModel" placeholder="Name (નામ)" class="form-control" required="required" type="text"
+								 [(ngModel)]="name" required ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="nameref.errors && (nameref.touched || nameref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!nameref.errors.required" class="error">
+										name required (નામ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+
+							<div class="form-group col-md-4">
+								<label>Father name</label>
+								<input id="Mobile No" name="fatherName" #fatherNameref="ngModel" placeholder="Father Name (પિતા નુ નામ)" class="form-control"
+								 required="required" type="text" [(ngModel)]="fatherName" required ngModel [ngClass]="{'red-border-class': fatherNameref.errors && fatherNameref.dirty}">
+								<label [hidden] *ngIf="fatherNameref.errors && (fatherNameref.touched || fatherNameref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!fatherNameref.errors.required" class="error">
+										Father Name required (પિતા નુ નામ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Birth Date</label>
+								<input [textMask]="{mask: mask}" [(ngModel)]='birthDate' name="birthDates" class="form-control" type="text" placeholder="birthdate (જન્મતારીખ)"
+								 #birthdateRef="ngModel" required/>
+								<label [hidden] *ngIf="birthdateRef?.errors && (birthdateRef.touched || birthdateRef.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!birthdateRef?.errors.required" class="error">
+										BirthDate required (જન્મતારીખ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Age</label>
+								<input type="text" name="age" placeholder="age  (ઉંમર)" #ageref="ngModel" [(ngModel)]="age" required class="form-control"
+								 pattern="^\d+$">
+								<label [hidden] *ngIf="ageref.errors && (ageref.touched || ageref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!ageref.errors.required" class="error">
+										age required (ઉંમર વર્ષ આવશ્યક છે)
+									</label>
+									<label [hidden]="!ageref.errors.pattern" class="error">
+										age must be in numbers only(ઉંમર માત્ર સંખ્યામાં જ હોવુ જોઈએ.)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Birth Place</label>
+								<input type="text" name="birthplace" placeholder="birthplace  (જન્મસ્થળ)" #bplaceref="ngModel" [(ngModel)]="birthPlace" required
+								 class="form-control">
+								<label [hidden] *ngIf="bplaceref.errors && (bplaceref.touched || bplaceref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!bplaceref.errors.required" class="error">
+										Birth Place required (જન્મસ્થળ આવશ્યક છે)
+									</label>
+								</label>
+
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Birth Time</label>
+								<input type="text" name="birthtime" [textMask]="{mask: maskTime}" placeholder="Birth Time  (જન્મનો સમય)" #timeref="ngModel"
+								 [(ngModel)]="birthTime" required class="form-control">
+								<label [hidden] *ngIf="timeref.errors && (timeref.touched || timeref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!timeref.errors.required" class="error">
+										Birth Time required (જન્મનો સમય આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>day/night (દિવસ/રાત્રી)</label>
+								<select class="form-control" placeholder="day/night" [(ngModel)]="birthTimeFormat" name="formatref" required #Formatref="ngModel">
+									<option disabled value=undefined>day/night (દિવસ/રાત્રી)</option>
+									<option value="am">am (દિવસ)</option>
+									<option value="pm">pm (રાત્રી)</option>
+								</select>
+								<label [hidden] *ngIf="Formatref.errors && (Formatref.touched || Formatref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!formatref.errors.required" class="error">
+										option required (વિકલ્પ આવશ્યક છે)
+									</label>
+									
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Email (ઇમેઇલ)</label>
+								<input name="email" #mailref="ngModel" placeholder="email (ઇમેઇલ)" class="form-control" required="required" type="text" [(ngModel)]="email"
+								 pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="mailref.errors && (mailref.touched || mailref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!mailref.errors.required" class="error">
+										email required (ઇ મેઇલ આવશ્યક છે)
+									</label>
+									<label [hidden]="!mailref.pattern.errors" class="error">
+										email must be in proper format. ex:- "abc@gmail.com" (ઇમેઇલ યોગ્ય ફોર્મેટમાં હોવું આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Height</label>
+								<input type="text" name="height" placeholder="height  (ઊંચાઈ)" #heightref="ngModel" [(ngModel)]="height" required class="form-control"
+								 pattern="^\d+(\.\d+)?$">
+								<label [hidden] *ngIf="heightref.errors && (heightref.touched || heightref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!heightref.errors.required" class="error">
+										height required (ઊંચાઈ આવશ્યક છે.)
+									</label>
+									<label [hidden]="!heightref.errors.pattern" class="error">
+										height must be in numbers only. (ઊંચાઈ માત્ર સંખ્યામાં જ હોવુ જોઈએ.)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Weight</label>
+								<input type="text" name="weight" placeholder="weight  (વજન)" #weightref="ngModel" [(ngModel)]="weight" required class="form-control"
+								 pattern="^\d+(\.\d+)?$">
+								<label [hidden] *ngIf="weightref.errors && (weightref.touched || weightref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!weightref.errors.required" class="error">
+										weight required (વજન આવશ્યક છે)
+									</label>
+									<label [hidden]="!weightref.errors.pattern" class="error">
+										weight must be in numbers only. (વજન માત્ર સંખ્યામાં જ હોવુ જોઈએ)
+									</label>
+								</label>
+
+							</div>
+							<div class="form-group col-md-4">
+								<label>Education</label>
+								<input type="text" name="education" placeholder="education  (અભ્યાસ)" #eduref="ngModel" [(ngModel)]="education" required
+								 class="form-control">
+								<label [hidden] *ngIf="eduref.errors && (eduref.touched || eduref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!eduref.errors.required" class="error">
+										education required (અભ્યાસ આવશ્યક છે)
+									</label>
+								</label>
+
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Spectacles</label>
+								<select class="form-control" placeholder="spectacles" [(ngModel)]="spectacles" name="specref" required #specref="ngModel">
+									<option disabled value=undefined>spectacles (ચશ્મા)</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="specref.errors && (specref.touched || specref.dirty)">
+										<label [hidden]="!specref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Complexion</label>
+								<select class="form-control" [(ngModel)]="complexion" name="complexion" required #complexionref="ngModel">
+									<option disabled value=undefined>complexion (દેખાવ)</option>
+									<option value="fair">Fair (ગોરા)</option>
+									<option value="black">Black (શ્યામ)</option>
+									<option value="wheatish">Wheatish (ઘઉંવર્ણ)</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="complexionref.errors && (complexionref.touched || complexionref.dirty)">
+										<label [hidden]="!complexionref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Plan to settle abroad?</label>
+								<select class="form-control" [(ngModel)]="carrierAbroad" name="carrierAbroad" required #cabroadref="ngModel">
+									<option disabled value=undefined>(વિદેશમાં સ્થાયી થવાની ભાવી યોજના)</option>
+									<option value="yes">Yes</option>
+									<option value="no">NO</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="cabroadref.errors && (cabroadref.touched || cabroadref.dirty)">
+										<label [hidden]="!cabroadref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Engagement broken (અગાઉ સગપણ તુટેલ છે?)</label>
+								<select class="form-control" [(ngModel)]="engagebroken" name="engagebroken" required #engagebrokenref="ngModel">
+									<option disabled value=undefined>(અગાઉ સગપણ તુટેલ છે?)</option>
+									<option value="yes">Yes</option>
+									<option value="no">NO</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="engagebrokenref.errors && (engagebrokenref.touched || engagebrokenref.dirty)">
+										<label [hidden]="!engagebrokenref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Believe in janmakshar(જન્માક્ષર માં માનો છો ?)</label>
+								<select class="form-control" [(ngModel)]="janmakshar" name="janmakshar" required #janmaksharref="ngModel">
+									<option disabled value=undefined>(જન્માક્ષર માં માનો છો ?)</option>
+									<option value="yes">Yes</option>
+									<option value="no">NO</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="janmaksharref.errors && (janmaksharref.touched || janmaksharref.dirty)">
+										<label [hidden]="!janmaksharref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Mangal (મંગળ)</label>
+								<select class="form-control" [(ngModel)]="mangal" name="mangal" required #mangalref="ngModel">
+									<option disabled value=undefined>Mangal (મંગળ)</option>
+									<option value="yes">Yes</option>
+									<option value="no">NO</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="mangalref.errors && (mangalref.touched || mangalref.dirty)">
+										<label [hidden]="!mangalref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Shani (શની)</label>
+								<select class="form-control" [(ngModel)]="shani" name="shani" required #shaniref="ngModel">
+									<option disabled value=undefined>Shani (શની)</option>
+									<option value="yes">Yes</option>
+									<option value="no">NO</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="shaniref.errors && (shaniref.touched || shaniref.dirty)">
+										<label [hidden]="!shaniref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>House (ઘર)</label>
+								<select class="form-control" [(ngModel)]="house" name="house" required #houseref="ngModel">
+									<option disabled value=undefined>House (ઘર)</option>
+									<option value="own">Own (પોતાનુ)</option>
+									<option value="rent">Rent (ભાડાનુ)</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="houseref.errors && (houseref.touched || houseref.dirty)">
+										<label [hidden]="!houseref.errors.required" class="error">
+											option required(વિકલ્પ આવશ્યક છે)
+										</label>
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Religious (ધાર્મિકતા)</label>
+								<select class="form-control" [(ngModel)]="religiousness" name="religiousness" required #religiousnessref="ngModel">
+									<option disabled value=undefined>Religiousness (ધાર્મિકતા)</option>
+									<option value="strict">strict (ચુસ્ત)</option>
+									<option value="liberal">liberal (બાંધછોડ ચાલે)</option>
+								</select>
+								<label class="" style="font-size:1rem">
+									<label class="error" *ngIf="religiousnessref.errors && (religiousnessref.touched || religiousnessref.dirty)">
+										<label [hidden]="!religiousnessref.errors.required" class="error">
+											option required (વિકલ્પ આવશ્યક છે)
+										</label>
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Religion ( જ્ઞાતિ / પેટા જ્ઞાતિ)</label>
+								<input name="gnati" #gnatiref="ngModel" placeholder="Religion (જ્ઞાતિ / પેટા જ્ઞાતિ)" class="form-control" required="required"
+								 type="text" [(ngModel)]="gnati" required ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="gnatiref.errors && (gnatiref.touched || gnatiref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!gnatiref.errors.required" class="error">
+										Religion required (જ્ઞાતિ / પેટા જ્ઞાતિ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>City (મૂળ વતન)</label>
+								<input name="mulvatan" #mulvatanref="ngModel" placeholder="city (મૂળ વતન)" class="form-control" required="required" type="text"
+								 [(ngModel)]="mulvatan" required ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="mulvatanref.errors && (mulvatanref.touched || mulvatanref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!mulvatanref.errors.required" class="error">
+										city required (મૂળ વતન આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Mobile (મોબાઇલ નંબર)</label>
+								<input name="phone" #phoneref="ngModel" placeholder="Phone (મોબાઇલ નંબર)" class="form-control" required="required" type="text"
+								 [(ngModel)]="mobile" pattern="^\d{10}$" required ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="phoneref.errors && (phoneref.touched || phoneref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!phoneref.errors.required" class="error">
+										Mobile no required (મોબાઇલ નંબર આવશ્યક છે)
+									</label>
+									<label [hidden]="!phoneref.pattern.errors" class="error">
+										Mobile no must be of 10 digits (મોબાઇલ નંબર 10 અંકોનો હોવો જોઈએ)
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Social activity (સામાજિક ક્ષેત્ર મા કાર્યાશીલ છો? શેમા)</label>
+								<textarea name="socialEvent" #socialEventref="ngModel" placeholder="Social activity (સામાજિક ક્ષેત્ર મા કાર્યાશીલ છો? શેમા)"
+								 class="form-control" type="text" [(ngModel)]="socialEvent" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}"></textarea>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Physical Disability (શારીરિક ખોડખાપણ હોય તો તેની વિગત)</label>
+								<textarea name="physicalDisability" #physicalDisabilityref="ngModel" placeholder="Physical Disability (શારીરિક ખોડખાપણ હોય તો તેની વિગત)"
+								 class="form-control" type="text" [(ngModel)]="physicalDisability" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}"> </textarea>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Candidate job / business address (ઉમેદવારની નોકરી / વ્યવસાયનો સરનામુ)</label>
+								<textarea name="candidateOfficeAdderess" #candidateOfficeAdderessref="ngModel" placeholder="Candidate job / business adderess (ઉમેદવારની નોકરી / વ્યવસાયનો સરનામુ)"
+								 class="form-control" type="text" required [(ngModel)]="candidateOfficeAdderess" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}"> </textarea>
+								<label [hidden] *ngIf="candidateOfficeAdderessref.errors && (candidateOfficeAdderessref.touched || candidateOfficeAdderessref.dirty)"
+								 class="" style="font-size:1rem">
+									<label [hidden]="!candidateOfficeAdderessref.errors.required" class="error">
+										address (સરનામુ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Residential Adderess (નિવાસ નુ સરનામુ)</label>
+								<textarea name="residentialAdderess" #residentialAdderessref="ngModel" placeholder="Residential Adderess (નિવાસ નુ સરનામુ)"
+								 class="form-control" type="text" required [(ngModel)]="residentialAdderess" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}"> </textarea>
+								<label [hidden] *ngIf="residentialAdderessref.errors && (residentialAdderessref.touched || residentialAdderessref.dirty)"
+								 class="" style="font-size:1rem">
+									<label [hidden]="!residentialAdderessref.errors.required" class="error">
+										adderess (સરનામુ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Preference from partner (પસંદગી પાત્ર પાસેથી અપેક્ષાઓ)</label>
+								<textarea name="partnerExpectations" #partnerExpectationsref="ngModel" placeholder="expectations from partner (પસંદગી પાત્ર પાસેથી અપેક્ષાઓ)"
+								 class="form-control" type="text" required [(ngModel)]="partnerExpectations" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}"> </textarea>
+								<label [hidden] *ngIf="partnerExpectationsref.errors && (partnerExpectationsref.touched || partnerExpectationsref.dirty)"
+								 class="" style="font-size:1rem">
+									<label [hidden]="!partnerExpectationsref.errors.required" class="error">
+										Preference required (અપેક્ષાઓ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Annual Income (વાર્ષિક આવક)</label>
+								<input name="annulaIncome" #annulaIncomeref="ngModel" placeholder="Annual Income (વાર્ષિક આવક)" class="form-control" type="text"
+								 required [(ngModel)]="annulaIncome" pattern="^\d+$" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="annulaIncomeref.errors && (annulaIncomeref.touched || annulaIncomeref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!annulaIncomeref.errors.required" class="error">
+										Income required (આવક આવશ્યક છે)
+									</label>
+									<label [hidden]="!annulaIncomeref.pattern.errors" class="error">
+										Income must be in numbers (આવક માત્ર સંખ્યામાં હોવી આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Married Brother (પરણિત ભાઈ)</label>
+								<input name="marriedBrother" #marriedBrotherref="ngModel" placeholder="Married Brother (પરણિત ભાઈ)" class="form-control"
+								 type="text" required [(ngModel)]="marriedBrother" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+							</div>
+							<div class="form-group col-md-4">
+								<label>Unmarried Brother (અપરિણિત ભાઈ)</label>
+								<input name="umarriedBrother" #umarriedBrotherref="ngModel" placeholder="Unmarried Brother (અપરિણિત ભાઈ)" class="form-control"
+								 type="text" required [(ngModel)]="umarriedBrother" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Married Sister (પરણિત બહેન)</label>
+								<input name="marriedSister" #marriedSisterref="ngModel" placeholder="Married Sister (પરણિત બહેન)" class="form-control" type="text"
+								 required [(ngModel)]="marriedSister" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Unmarried Sister (અપરિણિત બહેન)</label>
+								<input name="umarriedSister" #umarriedSisterref="ngModel" placeholder="Unmarried Sister (અપરિણિત બહેન)" class="form-control"
+								 type="text" required [(ngModel)]="umarriedSister" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Maternal Details (મોસાળ ની વિગતો)</label>
+								<input name="maternalRefrence" #maternalRefrenceref="ngModel" placeholder="Maternal Refrence (મોસાળ ની વિગતો)" class="form-control"
+								 type="text" required [(ngModel)]="maternalRefrence" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="maternalRefrenceref.errors && (maternalRefrenceref.touched || maternalRefrenceref.dirty)" class=""
+								 style="font-size:1rem">
+									<label [hidden]="!maternalRefrenceref.errors.required" class="error">
+										Maternal Details required (મોસાળ ની વિગતો આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+							<div class="form-group col-md-6">
+								<label>Maternal city (મોસાળ નુ ગામ)</label>
+								<input name="maternalCity" #maternalCityref="ngModel" placeholder="Maternal City (મોસાળ નુ ગામ)" class="form-control" type="text"
+								 required [(ngModel)]="maternalCity" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+								<label [hidden] *ngIf="maternalCityref.errors && (maternalCityref.touched || maternalCityref.dirty)" class="" style="font-size:1rem">
+									<label [hidden]="!maternalCityref.errors.required" class="error">
+										Maternal city required ((મોસાળ નુ ગામ આવશ્યક છે)
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Reputed Jain Citizen Refrence (પ્રતિષ્ઠિત જૈન નાગરિક નામ)</label>
+								<input name="jainRefrence" #jainRefrenceref="ngModel" placeholder="Maternal Refrence (પ્રતિષ્ઠિત જૈન નાગરિક નામ)" class="form-control"
+								 type="text" required [(ngModel)]="jainRefrence" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Reputed Jain Citizen Mobile (પ્રતિષ્ઠિત જૈન નાગરિક મોબાઇલ નંબર)</label>
+								<input name="jainRefrenceMobile" #jainRefrenceMobileref="ngModel" placeholder="Reputed Jain Citizen Mobile (પ્રતિષ્ઠિત જૈન નાગરિક મોબાઇલ નંબર)"
+								 class="form-control" type="text" required [(ngModel)]="jainRefrenceMobile" pattern="^\d{10}$" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Reputed Jain Citizen adderess (પ્રતિષ્ઠિત જૈન નાગરિક સરનામુ)</label>
+								<textarea name="jainRefrenceAdderess" #jainRefrenceAdderessref="ngModel" placeholder="Reputed Jain Citizen adderess (પ્રતિષ્ઠિત જૈન નાગરિક સરનામુ)"
+								 class="form-control" type="text" required [(ngModel)]="partnerExpectations" ngModel [ngClass]="{'red-border-class': nameref.errors && nameref.dirty}"> </textarea>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label>Profile Picture</label>
+							</div>
+							<div class="col-md-9" style="    color: black;overflow: hidden;font-size: 15px;">
+								<input type="file" name="profile" id="profile">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" (change)="lgModal.show()" required>&nbsp;&nbsp;
+										<label class="form-check-label" for="invalidCheck2">
+											By clicking Submit, you agree to our Terms & Conditions, Visitor Agreement and Privacy Policy.
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12 text-center">
+								<button class="btn btn-warning btn-preview">Preview</button>
+								<button type="submit" class="btn btn-danger btn-submit">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+		<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+		role="dialog" aria-labelledby="dialog-sizes-name1">
+			<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title pull-left">Confirm Your Details</h5>
+					<button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="profile">
+						<img src="../../assets/jsg-fed.jpg">
+					</div>
+					<table class="table table-condensed" style="color: black; font-size: 13px; height:100px">
+						<tr>
+							<td>name:-</td>
+							<td style="color: red">{{surname}} {{name}} {{fatherName}}</td>
+							<td>BirthDate:-</td>
+							<td style="color: red">{{birthDate}}</td>
+						</tr>
+						<tr>
+		
+							<td> age:-</td>
+							<td style="color: red">{{age}}</td>
+							<td>birthplace</td>
+							<td style="color: red"> {{birthPlace}}</td>
+						</tr>
+						<tr>
+							<td>BirthTime</td>
+							<td style="color: red">{{birthTime}} {{birthTimeFormat}}</td>
+							<td>email</td>
+							<td style="color: red">{{email}}</td>
+						</tr>
+						<tr>
+							<td>Height</td>
+							<td style="color: red">{{height}}</td>
+							<td>Weight</td>
+							<td style="color: red">{{weight}}</td>
+						</tr>
+						<tr>
+							<td>Education</td>
+							<td style="color: red">{{education}}</td>
+							<td>spctacles</td>
+							<td style="color: red">{{spectacles}}</td>
+						</tr>
+						<tr>
+							<td>Complexion</td>
+							<td style="color: red">{{complexion}}</td>
+							<td>Plan to settle abroad</td>
+							<td style="color: red">{{carrierAbroad}}</td>
+						</tr>
+						<tr>
+							<td>Engagement broken</td>
+							<td style="color: red">{{engagebroken}}</td>
+							<td>Belive in janmakshar</td>
+							<td style="color: red">{{janmakshar}}</td>
+						</tr>
+						<tr>
+							<td>Mangal</td>
+							<td style="color: red">{{mangal}}</td>
+							<td>Shani</td>
+							<td style="color: red">{{shani}}</td>
+						</tr>
+						<tr>
+							<td>House</td>
+							<td style="color: red">{{house}}</td>
+							<td>Religiousness</td>
+							<td style="color: red">{{religiousness}}</td>
+						</tr>
+						<tr>
+							<td>Religion</td>
+							<td style="color: red">{{gnati}}</td>
+							<td>City</td>
+							<td style="color: red">{{mulvatan}}</td>
+						</tr>
+						<tr>
+							<td>Mobile no</td>
+							<td style="color: red">{{mobile}}</td>
+							<td>Involvement in social activity</td>
+							<td style="color: red">{{socialEvent}}</td>
+						</tr>
+						<tr>
+							<td>Physical Disability</td>
+							<td style="color: red">{{physicalDisability}}</td>
+							<td>Annual Income</td>
+							<td style="color: red">{{annulaIncome}}</td>
+						</tr>
+						<tr>
+							<td>Candidate job / business address</td>
+							<td style="color: red">{{candidateOfficeAdderess}}</td>
+						</tr>
+						<tr>
+							<td>Residential Adderess</td>
+							<td style="color: red">{{residentialAdderess}}</td>
+						</tr>
+						<tr>
+							<td>Preference from partner</td>
+							<td style="color: red">{{partnerExpectations}}</td>
+						</tr>
+						<tr>
+							<td>Married Brother</td>
+							<td style="color: red">{{marriedBrother}}</td>
+							<td>Unmarried Brother</td>
+							<td style="color: red">{{umarriedBrother}}</td>
+						</tr>
+						<tr>
+							<td>Married Sister</td>
+							<td style="color: red">{{marriedSister}}</td>
+							<td>Unmarried Sister</td>
+							<td style="color: red">{{umarriedSister}}</td>
+						</tr>
+						<tr>
+							<td>Maternal Details</td>
+							<td style="color: red">{{maternalRefrence}}</td>
+							<td>Maternal city</td>
+							<td style="color: red">{{maternalCity}}</td>
+						</tr>
+						<tr>
+							<td>Reputed Jain Citizen Refrence</td>
+							<td style="color: red">{{jainRefrence}}</td>
+							<td>Reputed Jain Citizen Mobile</td>
+							<td style="color: red">{{jainRefrenceMobile}}</td>
+						</tr>
+						<tr>
+							<td>Reputed Jain Citizen adderess</td>
+							<td style="color: red">{{jainRefrenceAdderess}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			</div>
+		</div>
+
+</div>
